@@ -284,6 +284,12 @@ export class Menubar extends EventEmitter {
 		const defaults = {
 			show: false, // Don't show it at first
 			frame: false, // Remove window frame
+			webPreferences: {
+				webSecurity: false,
+				contextIsolation: false, // false -> 可在渲染进程中使用electron的api，true->需要bridge.js(contextBridge)
+				nodeIntegration: true,
+				//preload: path.join(appInfo.baseDir, 'preload', 'bridge.js'),
+			  },
 		};
 
 		this._browserWindow = new BrowserWindow({
